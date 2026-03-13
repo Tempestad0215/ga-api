@@ -1,0 +1,35 @@
+### GET request to example server
+POST https://10.17.1.23:50000/b1s/v2/Login
+Accept: application/json
+Content-Type: application/json
+
+{
+    "CompanyDB": "SBO10_DEPO_FERRETERO",
+    "Password": "105020947",
+    "UserName": "manager"
+}
+
+###
+GET https://10.17.1.23:50000/b1s/v2/Items('06000376')?$top=1
+Accept: application/json
+Content-Type: application/json
+Cookie: B1SESSION=7d7100d6-1e1f-11f1-c000-005056885336-11112-10228;
+
+###
+GET https://10.17.1.23:50000/b1s/v2/$metadata
+Accept: application/json
+Content-Type: application/json
+Cookie: B1SESSION=920a00e0-1e21-11f1-c000-005056885336-11112-10228;
+
+###
+GET https://10.17.1.23:50000/b1s/v2/PurchaseDeliveryNotes(26523)?$top=1
+Accept: application/json
+Content-Type: application/json
+Cookie: B1SESSION=920a00e0-1e21-11f1-c000-005056885336-11112-10228;
+
+
+###
+GET https://10.17.1.23:50000/b1s/v2/StockTakings(ItemCode='06000376',WarehouseCode='ALM1')
+Accept: application/json
+Content-Type: application/json
+Cookie: B1SESSION=920a00e0-1e21-11f1-c000-005056885336-11112-10228;
