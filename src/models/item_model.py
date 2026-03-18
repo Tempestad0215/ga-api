@@ -1,7 +1,6 @@
-from datetime import datetime
 from typing import Optional, List
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from src.enums.item_enum import ItemStatusEnum
 from src.models.price_list import PriceListModel
@@ -36,6 +35,13 @@ class ItemStockLow(BaseModel):
     CantidadUltimaCompra: Optional[float] = None
     CostoUltimaCompra: Optional[float] = None
     FechaUltimaCompra: Optional[str] = None
+
+
+class UpdateStockLimitByWarehouse(BaseModel):
+    WarehouseCode: str
+    MinimalStock: float
+    MaximalStock: float
+    MinimalOrder: float
 
 
 

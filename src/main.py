@@ -15,8 +15,8 @@ scheduler = AsyncIOScheduler()
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     trigger = CronTrigger(
-        day_of_week="mon",
-        hour="3",
+        day_of_week="mon,tue",
+        hour="5",
         minute="0",
         timezone=pytz.timezone("America/Santo_Domingo")
     )
@@ -26,8 +26,22 @@ async def lifespan(app: FastAPI):
         trigger=trigger,
         args=["ALM1"],
         id="check_stok_warehouse_ALM1",
+        replace_existing=True,
+        max_instances=1,
+        misfire_grace_date=3600,
 
     )
+    scheduler.add_job(
+        check_stok_warehouse,
+        trigger=trigger,
+        args=["ALM2"],
+        id="check_stok_warehouse_ALM2",
+        replace_existing=True,
+        max_instances=1,
+        misfire_grace_date=3600,
+
+    )
+
     # Para iniciar el job
     scheduler.start()
 

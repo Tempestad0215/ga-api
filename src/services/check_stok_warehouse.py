@@ -20,7 +20,8 @@ async def check_stok_warehouse(warehouse: str):
 
         while True:
             # 1. Una sola petición que se repite con el skip actualizado
-            response = await (client.request("view.svc/B1_AlertStockLowALM1B1SLQuery")
+            response = await (client.request("view.svc/B1_AlertStockLowB1SLQuery")
+                            .filter(f"Almacen eq '{warehouse}'")
                             .with_page_size(top)
                             .skip(skip)
                             .get(ODataResponse[ItemStockLow]))
@@ -47,8 +48,13 @@ async def check_stok_warehouse(warehouse: str):
         file_path = excel_path / f"reporte_stock_{warehouse}.xlsx"
         data_frame.to_excel(file_path, index=False, engine="openpyxl")
 
+        if warehouse == "ALM1":
+            send_to = ["tecnologia@depositoferretero.com","aduran@depositoferretero.com", "inventariopp@depositoferretero.com","compras@depositoferretero.com"]
+        else:
+            send_to = ["tecnologia@depositoferretero.com","aduran@depositoferretero.com", "inventariopp@depositoferretero.com","comprasbavaro@depositoferretero.com"]
+
         await SendEmail.send_email(
-            "tecnologia@depositoferretero.com",
+            send_to,
             len(data_excel),
             warehouse,
             file_path,
