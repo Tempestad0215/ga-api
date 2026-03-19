@@ -70,4 +70,4 @@ async def check_stok_warehouse(warehouse: str):
 
 
 if __name__ == "__main__":
-    asyncio.run(check_stok_warehouse("ALM1"))
+    asyncio.run(check_stok_warehouse("ALM2"))

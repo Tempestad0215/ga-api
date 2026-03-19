@@ -26,9 +26,9 @@ class ItemModel(BaseModel):
 class ItemStockLow(BaseModel):
     Codigo: str
     Descripcion: str
-    Disponible: float
     Id_Adicional: Optional[str] = None
-    MinimoDisponible: float
+    Disponible: float
+    CompraMinima: float
     StockMinimo: float
     StockMaximo: float
     Almacen: str
