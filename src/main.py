@@ -4,8 +4,6 @@ import pytz
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 from fastapi import FastAPI
-import datetime as dt
-
 
 from src.routes.sap_route import sap_router
 from src.services.check_stok_warehouse import check_stok_warehouse
