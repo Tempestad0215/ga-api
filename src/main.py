@@ -22,7 +22,7 @@ async def lifespan(app: FastAPI):
     scheduler.add_job(
         check_stok_warehouse,
         trigger=trigger,
-        args=["ALM1"],
+        args=("ALM1",),
         id="check_stok_warehouse_ALM1",
         replace_existing=True,
         max_instances=1,
@@ -32,7 +32,7 @@ async def lifespan(app: FastAPI):
     scheduler.add_job(
         check_stok_warehouse,
         trigger=trigger,
-        args=["ALM2"],
+        args=("ALM2",),
         id="check_stok_warehouse_ALM2",
         replace_existing=True,
         max_instances=1,
